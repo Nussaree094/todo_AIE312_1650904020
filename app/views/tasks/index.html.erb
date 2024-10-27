@@ -1,0 +1,21 @@
+<h1>Todo List</h1>
+
+<%= form_with(model: @new_task, local: true) do |form| %>
+  <div>
+    <%= form.label :title, "New Task" %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.submit "Add Task" %>
+  </div>
+<% end %>
+
+<h2>Incomplete Tasks</h2>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= task.title %>
+      <%= link_to "Mark as complete", complete_task_path(task), method: :patch %>
+    </li>
+  <% end %>
+</ul>
